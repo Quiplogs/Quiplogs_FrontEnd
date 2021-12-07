@@ -1,0 +1,39 @@
+<nb-card>
+  <nb-card-header>Define Planned Maintenance</nb-card-header>
+  <nb-card-body class="stepper">
+    <nb-stepper #stepper>
+      <nb-step [stepControl]="createForm" label="Create">
+        <form [formGroup]="createForm" class="step-container">
+          <div class="form-group row">
+            <label for="inputName" class="label col-sm-12 form-control-label">Planned Maintenance Name</label>
+            <input nbInput formControlName="name" fullWidth class="form-control" autocomplete="off"
+              placeholder="E.g. 750 Hour service"
+              [status]="f.name.errors ? (f.name.invalid  ? 'danger' : 'success') : 'basic'" />
+          </div>
+          <div class="form-group row">
+            <label for="defaultTechnicianId" class="label col-sm-12 form-control-label">Default Technician</label>
+            <nb-select formControlName="defaultTechnicianId" fullWidth="true" placeholder="Select a Technician">
+              <nb-option *ngFor="let technician of technicianList" [value]="technician.id">
+                {{technician.firstName}}
+              </nb-option>
+            </nb-select>
+          </div>
+          <button nbButton nbStepperNext (click)="onCreatePlannedMaintenance()">Add Schedules</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="scheduleForm" label="Add Schedule">
+        <form [formGroup]="scheduleForm" (ngSubmit)="onCreateSchedule()" class="step-container">
+          <div *ngIf="plannedMaintenancePersisted">
+            <ngx-schedule-component [PlannedMaintenanceId]="plannedMaintenance.id"
+              [AssetId]="plannedMaintenance.assetId" [AssetUom]="plannedMaintenance.asset.uoM">
+            </ngx-schedule-component>
+          </div>
+          <div class="schedule-step-buttons">
+            <button nbButton nbStepperPrevious>previous</button>
+            <button nbButton (click)="closeStepper()">Close</button>
+          </div>
+        </form>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

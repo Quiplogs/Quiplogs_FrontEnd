@@ -1,0 +1,33 @@
+<nb-card>
+    <nb-card-header>
+        <button *ngIf="!editMode" nbButton ghost size="tiny" status="success" (click)="editItemClick()">Edit</button>
+        <button *ngIf="editMode" nbButton ghost size="tiny" status="success" (click)="editItemClick()">Cancel</button>
+        <button *ngIf="editMode" nbButton ghost size="tiny" status="success" (click)="updateItemClick()">Update</button>
+        <button nbButton ghost size="tiny" status="danger" (click)="deleteItemClick()">Delete</button>
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="detailForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{'name-' + index}}" class="label">Name</label>
+                        <input id="{{'name-' + index}}" type="text" nbInput fullWidth value="{{model?.name}}"
+                            placeholder="Name" formControlName="name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="{{'defaultTechnicianId-' + index}}" class="label col-sm-6 form-control-label">Default
+                        Technician</label>
+                    <nb-select id="{{'defaultTechnicianId-' + index}}" *ngIf="technicianList"
+                        formControlName="technicianId" fullWidth="true" placeholder="Select a Technician">
+                        <nb-option *ngFor="let technician of technicianList" [value]="technician.id">
+                            {{technician.firstName}}
+                        </nb-option>
+                    </nb-select>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>
+<ngx-planned-maintenance-detail-part [plannedMaintenanceId]="model.id"></ngx-planned-maintenance-detail-part>
+<ngx-planned-maintenance-detail-task [plannedMaintenanceId]="model.id"></ngx-planned-maintenance-detail-task>

@@ -1,0 +1,50 @@
+<nb-card *ngIf="IsLoaded">
+    <nb-card-header>
+        Planned Maintenance
+    </nb-card-header>
+    <nb-card-body>
+        <div class="container">
+            <div *ngIf="isEnabled">
+                <button nbTooltip="Add Planned Maintenance" nbTooltipPlacement="top" nbButton
+                    (click)="addPlannedMaintenance()" status="success">{{lblAdd}}</button>
+                <nb-accordion>
+                    <nb-accordion-item *ngFor="let plannedMaintenance of plannedMaintenanceList; index as i;"
+                        [expanded]="plannedMaintenance.expanded">
+                        <nb-accordion-item-header class="planned-maintenance-accordion-header">
+                            <span>Name: {{plannedMaintenance.name}}</span>
+                        </nb-accordion-item-header>
+                        <nb-accordion-item-body class="planned-maintenance-accordion-body">
+                            <ngx-planned-maintenance-detail [model]="plannedMaintenance" [index]="i">
+                            </ngx-planned-maintenance-detail>
+                            <ngx-schedule-component [PlannedMaintenanceId]="plannedMaintenance.id"
+                                [AssetId]="plannedMaintenance.assetId" [AssetUom]="plannedMaintenance.asset.uoM">
+                            </ngx-schedule-component>
+                        </nb-accordion-item-body>
+                    </nb-accordion-item>
+                </nb-accordion>
+            </div>
+            <div *ngIf="!isEnabled">
+                <nb-alert status="danger" class="error">No Asset Linked!</nb-alert>
+            </div>
+        </div>
+        <div *ngIf="pagedList.pager.totalItems > 0" class="pager-wrapper">
+            <div class="intWrapper">
+                <ul *ngIf="pagedList.pager.pages && pagedList.pager.pages.length" class="mainMenu">
+                    <li [ngClass]="{disabled:pagedList.pager.currentPage === 1}" class="page-item">
+                        <a [routerLink]="" [queryParams]="{ page: pagedList.pager.currentPage - 1 }"
+                            class="page-link">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pagedList.pager.pages"
+                        [ngClass]="{active:pagedList.pager.currentPage === page}" class="page-item">
+                        <a [routerLink]="" [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pagedList.pager.currentPage === pagedList.pager.totalPages}"
+                        class="page-item">
+                        <a [routerLink]="" [queryParams]="{ page: pagedList.pager.currentPage + 1 }"
+                            class="page-link">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

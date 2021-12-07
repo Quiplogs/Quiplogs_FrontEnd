@@ -1,0 +1,53 @@
+@import '../styles/variables';
+
+@mixin ngx-layout() {
+  @include media-breakpoint-down(is) {
+    .row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
+
+  .loader-container {
+    min-height: 300px;
+  }
+
+  .checkmark {
+    display: inline-block;
+    width: 22px;
+    height: 15px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+  }
+
+  .checkmark_stem {
+    position: absolute;
+    width: 3px;
+    height: 14px;
+    background-color: #2ce69b;
+    left: 11px;
+    top: 1px;
+  }
+
+  .checkmark_kick {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: #2ce69b;
+    left: 8px;
+    top: 12px;
+  }
+
+  .no-datadisplay {
+    font-weight: bold;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: center;
+    padding: 5em;
+  }
+
+  .persist-button-container {
+    text-align: right;
+  }
+}

@@ -1,0 +1,237 @@
+<div class="row">
+    <div class="col-lg-12">
+        <nb-card>
+            <nb-card-body>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <nb-radio-group name="radio-group" [(ngModel)]="selectedSchedule" (valueChange)="onChange($event)">
+                            <nb-radio value="custom" [disabled]="enableCustom" class="radio-selector">Custom</nb-radio>
+                            <nb-radio value="daily" [disabled]="enableDaily" class="radio-selector">Daily</nb-radio>
+                            <nb-radio value="weekly" [disabled]="enableWeekly" class="radio-selector">Weekly</nb-radio>
+                            <nb-radio value="monthly" [disabled]="enableMonthly" class="radio-selector">Monthly</nb-radio>
+                            <nb-radio value="yearly" [disabled]="enableYearly" class="radio-selector">Yearly</nb-radio>
+                        </nb-radio-group>
+                    </div>
+                </div>
+                <div *ngIf="isCustom" [formGroup]="customScheduleForm">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="recurEvery" class="label col-form-label">Recur Every</label>
+                            <input type="text" nbInput formControlName="recurEvery" fullWidth
+                                placeholder="Recur after every X ({{AssetUom}})">
+                            <span>Cycles</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="startingAt" class="label col-form-label">Starting at</label>
+                            <input type="text" fullWidth nbInput formControlName="startingAt" id="startingAt"
+                                placeholder="Starting at">
+                            <span>Starting Cycles</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isDaily" [formGroup]="dailyScheduleForm">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="recurEvery" class="label col-form-label">Repeat Every (days)</label>
+                            <input type="text" nbInput formControlName="recurEvery" fullWidth
+                                placeholder="Repeat after every X days">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label col-form-label">Time</label>
+                            <nb-select fullWidth="true" formControlName="recurrenceTime" [(selected)]="recurrenceTimeSelected" placeholder="Select a Hour">
+                                <nb-option *ngFor="let item of repeatHours;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="startDate" class="label col-form-label">Starting at</label>
+                            <input [nbDatepicker]="dailyDatepickerStart" formControlName="startDate" fullWidth nbInput
+                                id="startDate" placeholder="Starting at">
+                            <nb-datepicker #dailyDatepickerStart></nb-datepicker>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="endDate" class="label col-form-label">Ending at</label>
+                            <input [nbDatepicker]="dailyDatepickerEnd" formControlName="endDate" fullWidth nbInput
+                                id="endDate" placeholder="Ending at">
+                            <nb-datepicker #dailyDatepickerEnd></nb-datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isWeekly" [formGroup]="weeklyScheduleForm">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="recurEvery" class="label col-form-label">Repeat Every</label>
+                            <input type="text" nbInput formControlName="recurEvery" fullWidth
+                                placeholder="Repeat after every X weeks">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label col-form-label">Time</label>
+                            <nb-select fullWidth="true" formControlName="recurrenceTime" [(selected)]="recurrenceTimeSelected" placeholder="Select a Hour">
+                                <nb-option *ngFor="let item of repeatHours;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <nb-checkbox formControlName="monday" status="success">Monday</nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <nb-checkbox formControlName="tuesday" status="success">Tuesday</nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <nb-checkbox formControlName="wednesday" status="success">Wednesday</nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <nb-checkbox formControlName="thursday" status="success">Thursday</nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <nb-checkbox formControlName="friday" status="success">Friday</nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <nb-checkbox formControlName="saturday" status="success">Saturday</nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <nb-checkbox formControlName="sunday" status="success">Sunday</nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="startDate" class="label col-form-label">Starting at</label>
+                            <input [nbDatepicker]="weeklyDatepickerStart" formControlName="startDate" fullWidth nbInput
+                                id="weeklyStartingAt" placeholder="Starting at">
+                            <nb-datepicker #weeklyDatepickerStart></nb-datepicker>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="endDate" class="label col-form-label">Ending at</label>
+                            <input [nbDatepicker]="weeklyDatepickerEnd" formControlName="endDate" fullWidth nbInput
+                                id="weeklyEndingAt" placeholder="Ending at">
+                            <nb-datepicker #weeklyDatepickerEnd></nb-datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isMonthly" [formGroup]="monthlyScheduleForm">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="recurEvery" class="label col-form-label">Repeat Every</label>
+                            <nb-select fullWidth="true" formControlName="recurEvery" [(selected)]="recurrenceMonthSelected" placeholder="Select a Month">
+                                <nb-option *ngFor="let item of repeatMonths;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                            <span>Month(s)</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="recurrenceDay" class="label col-form-label">On The</label>
+                            <nb-select fullWidth="true" formControlName="recurrenceDay" [(selected)]="recurrenceDaySelected" placeholder="Select a Day">
+                                <nb-option *ngFor="let item of repeatDays;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                            <span>Day(s)</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="label col-form-label">Time</label>
+                            <nb-select fullWidth="true" formControlName="recurrenceTime" [(selected)]="recurrenceTimeSelected" placeholder="Select a Hour">
+                                <nb-option *ngFor="let item of repeatHours;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="startDate" class="label col-form-label">Starting at</label>
+                            <input [nbDatepicker]="monthlyDatepickerStart" formControlName="startDate" fullWidth nbInput id="startDate"
+                                placeholder="Starting at">
+                            <nb-datepicker #monthlyDatepickerStart></nb-datepicker>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="endDate" class="label col-form-label">Ending at</label>
+                            <input [nbDatepicker]="monthlyDatepickerEnd" formControlName="endDate" fullWidth nbInput id="endDate"
+                                placeholder="Ending at">
+                            <nb-datepicker #monthlyDatepickerEnd></nb-datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isYearly" [formGroup]="yearlyScheduleForm">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="recurEvery" class="label col-form-label">Repeat Every</label>
+                            <nb-select fullWidth="true" formControlName="recurEvery"  [(selected)]="recurrenceYearSelected" placeholder="Select a Year">
+                                <nb-option *ngFor="let item of repeatYears;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                            <span>Year(s)</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="recurrenceMonth" class="label col-form-label">On The</label>
+                            <nb-select fullWidth="true" formControlName="recurrenceMonth" [(selected)]="recurrenceMonthSelected" placeholder="Select a Month">
+                                <nb-option *ngFor="let item of repeatMonths;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                            <span>Month(s)</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="recurrenceDay" class="label col-form-label">Day</label>
+                            <nb-select fullWidth="true" formControlName="recurrenceDay" [(selected)]="recurrenceDaySelected" placeholder="Select a Day">
+                                <nb-option *ngFor="let item of repeatDays;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                            <span>Day(s)</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="recurrenceTime" class="label col-form-label">Time</label>
+                            <nb-select fullWidth="true" formControlName="recurrenceTime" [(selected)]="recurrenceTimeSelected" placeholder="Select a Hour">
+                                <nb-option *ngFor="let item of repeatHours;" value="{{item.val}}">
+                                    {{item.val}}{{item.ext}}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="startDate" class="label col-form-label">Starting at</label>
+                            <input [nbDatepicker]="yearlyDatepickerStart" formControlName="startDate" fullWidth nbInput id="startDate"
+                                placeholder="Starting at">
+                            <nb-datepicker #yearlyDatepickerStart></nb-datepicker>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="endDate" class="label col-form-label">Ending at</label>
+                            <input [nbDatepicker]="yearlyDatepickerEnd" formControlName="endDate" fullWidth nbInput id="endDate"
+                                placeholder="Ending at">
+                            <nb-datepicker #yearlyDatepickerEnd></nb-datepicker>
+                        </div>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer class="footer">
+                <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+                <button nbButton status="success" (click)="submit()">{{ lblPut }}</button>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+</div>

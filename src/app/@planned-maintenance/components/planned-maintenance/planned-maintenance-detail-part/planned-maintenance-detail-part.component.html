@@ -1,0 +1,45 @@
+<nb-card *ngIf="plannedMaintenanceParts?.length">
+    <nb-card-header>Parts</nb-card-header>
+    <nb-card-body style="padding: 0;">
+        <nb-list>
+            <nb-list-item *ngFor="let model of plannedMaintenanceParts; index as i;">
+                <form class="form-inline">
+                    <div class="col-md-8">
+                        <div class=" form-group">
+                            <label for="{{'inputPartCode' + i}}" class="label-dropdown-inline-items">Part</label>
+                            <input (click)="openProductPopup(i)" type="text" nbInput fullWidth
+                                id="{{'inputPartCode' + i}}" placeholder="Click to select Part"
+                                value="{{model.part?.code}}"  [disabled]="!model.canEdit">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class=" form-group">
+                            <label for="{{'inputPartQuantity' + i}}" class="label-dropdown-inline-items">Quantity</label>
+                            <input type="text" nbInput fullWidth id="{{'inputPartQuantity' + i}}"
+                                value="{{model.quantity}}" placeholder="Qty" [disabled]="!model.canEdit">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <nb-actions size="small" fullWidth>
+                            <nb-action *ngIf="!model.canEdit">
+                                <nb-icon nbTooltip="Edit" class="action-icon icon-hover" (click)="editItemClick(i)"
+                                    icon="edit-2-outline"></nb-icon>
+                            </nb-action>
+                            <nb-action *ngIf="model.canEdit">
+                                <nb-icon nbTooltip="Save" class="action-icon icon-hover" (click)="saveItemClick(i)"
+                                    icon="save-outline">
+                                </nb-icon>
+                            </nb-action>
+                            <nb-action>
+                                <nb-icon nbTooltip="Remove" class="action-icon icon-hover" (click)="deleteItemClick(i)"
+                                    icon="trash-2-outline">
+                                </nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </div>
+                </form>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>
+<button nbButton outline size="small" status="info" (click)="addItem()">Add Part</button>

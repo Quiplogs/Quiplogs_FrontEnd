@@ -1,0 +1,28 @@
+<nb-card size="medium">
+    <nb-card-header>
+        <span>Open Work Orders</span>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list *ngFor="let item of openWorkOrders">
+            <nb-list-item>
+                <div class="workeorder-create-date">
+                    <div class="caption">Work Order Created</div>
+                    {{ item.DateCreated }}
+                </div>
+                <div class="workorder-reference-number">
+                    <div class="caption">Reference Number</div>
+                    <div class="value">{{ item.ReferenceNumber }}</div>
+                </div>
+                <div class="workorder-assigned-technician">
+                    <div class="caption">Assigned Technician</div>
+                    <div class="value">{{ item.Technician }}</div>
+                </div>
+                <div class="workorder-link" [routerLink]="['/workorders/edit/', item.Id]">
+                    <div class="arrowed">
+                        <div class="arrow-link"></div>
+                    </div>
+                </div>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>

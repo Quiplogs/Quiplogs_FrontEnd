@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="add-button">
+            <button (click)="addSchedule()" nbButton nbTooltipStatus="success" outline status="success" size="small">
+                <span>Add Schedule</span>
+            </button>
+        </div>
+    </div>
+    <div class="row" *ngIf="schedules.length == 0">
+        <div class="title">
+            <span>No Current Schedules, Add New Schedules</span>
+        </div>
+    </div>
+    <div class="row" *ngIf="schedules.length > 0">
+        <div class="wrapper">
+            <div class="Rtable Rtable--5cols Rtable--collapse">
+                <div class="Rtable-row Rtable-row--head">
+                    <div class="Rtable-cell data-content-cell column-heading">Type</div>
+                    <div class="Rtable-cell data-content-cell column-heading">Next Due</div>
+                    <div class="Rtable-cell edit-cell column-heading">Edit</div>
+                    <div class="Rtable-cell edit-cell column-heading">Delete</div>
+                </div>
+                <div *ngFor="let item of schedules; let ind = index;"
+                    [className]="ind % 2 == 0 ? 'Rtable-row is-striped' : 'Rtable-row'">
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Type</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            <span class="data-content-important">
+                                {{ item.type }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Next Due</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            <div *ngIf="!isNumber(item.nextDue)">
+                                {{ item.nextDue | date: "dd/MM/yyyy" }}
+                            </div>
+                            <div *ngIf="isNumber(item.nextDue)">
+                                {{ item.nextDue }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell edit-cell">
+                        <div class="Rtable-cell--heading">Edit</div>
+                        <div class="Rtable-cell--content edit-content">
+                            <a (click)="editSchedule($event, item)">
+                                <nb-icon icon="edit-2-outline"></nb-icon>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell Rtable-cell--foot edit-cell">
+                        <div class="Rtable-cell--heading">Remove</div>
+                        <div class="Rtable-cell--content edit-content">
+                            <a (click)="delete($event, item)">
+                                <nb-icon icon="trash-2-outline"></nb-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

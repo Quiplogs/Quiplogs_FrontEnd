@@ -1,0 +1,29 @@
+@import "../../../@theme//styles/variables";
+
+.edit-card-header {
+    text-align: right;
+    padding: 0.5em;
+}
+
+:host ::ng-deep nb-card nb-card-body {
+    background-color: #fff;
+}
+
+h6 {
+    color: $color-three;
+}
+
+h5 {
+    color: $color-five;
+}
+
+.center {
+    text-align: center;
+}
+
+.start-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2em;
+}

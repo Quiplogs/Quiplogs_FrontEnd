@@ -1,0 +1,182 @@
+<nb-card>    
+    <nb-card-body>
+        <form [formGroup]="workOrderForm">
+            <div class="row center">
+                <div class="col-md-2">
+                    <div *ngIf="!editMode" class="form-group">
+                        <div class="item text-heading">
+                            <div>
+                                <h6 class="text-heading">Priority</h6>
+                                <h5 *ngIf="model?.priority === 0">Low</h5>
+                                <h5 *ngIf="model?.priority === 1">Medium</h5>
+                                <h5 *ngIf="model?.priority === 2">High</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="editMode" class="form-group">
+                        <label for="priority" class="labelform-control-label">Priority</label>
+                        <nb-select formControlName="priority" *ngIf="priorityList" fullWidth="true"
+                            placeholder="Select a location" selected="{{model?.priority}}">
+                            <nb-option *ngFor="let item of priorityList;" [value]="item.value">
+                                {{item.name}}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div *ngIf="!editMode" class="form-group">
+                        <div class="item text-heading">
+                            <div>
+                                <h6 class="text-heading">Reference Number</h6>
+                                <h5>{{model?.referenceNumber}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="editMode" class="form-group">
+                        <label for="referenceNumber" class="label">Reference Number</label>
+                        <input id="referenceNumber" type="text" nbInput fullWidth value="{{model?.referenceNumber}}"
+                            placeholder="Reference Number" formControlName="referenceNumber">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div *ngIf="!editMode" class="form-group">
+                        <div class="item text-heading">
+                            <div>
+                                <h6 class="text-heading">Asset</h6>
+                                <h5>{{model?.asset.name}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="editMode" class="form-group">
+                        <label for="assetId" class="label">Asset </label>
+                        <input (click)="openAssetSearchDialog()" id="assetId" type="text" nbInput fullWidth
+                            value="{{model?.asset?.name}}" placeholder="Asset Name" formControlName="assetId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div *ngIf="!editMode" class="form-group">
+                        <div class="item text-heading">
+                            <div>
+                                <h6 class="text-heading">Location</h6>
+                                <h5>{{model?.location.name}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="editMode" class="form-group">
+                        <label for="inputLocation" class="label col-form-label">Location</label>
+                        <nb-select formControlName="locationId" *ngIf="locationList" fullWidth="true"
+                            placeholder="Select a location" selected="{{model?.locationId}}">
+                            <nb-option *ngFor="let item of locationList;" [value]="item.id">
+                                {{item.name}}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div *ngIf="!editMode" class="form-group">
+                        <div class="item text-heading">
+                            <div>
+                                <h6 class="text-heading">Technician</h6>
+                                <h5>{{model?.technician.firstName}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="editMode" class="form-group">
+                        <label for="technicianId" class="labelform-control-label">Technician </label>
+                        <nb-select formControlName="technicianId" *ngIf="technicianList" fullWidth="true"
+                            placeholder="Select a Technician" selected="{{model?.technicianId}}">
+                            <nb-option *ngFor="let technician of technicianList" [value]="technician.id">
+                                {{technician.firstName}}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row start-button">
+                <button *ngIf="model?.status === 3" nbButton [status]="'warning'" (click)="startWorkOrderClick()">Restart
+                    Work</button>
+                <button *ngIf="model?.status !== 1 && model?.status !== 3" nbButton [status]="'warning'" (click)="startWorkOrderClick()">Start
+                    Work</button>
+                <button *ngIf="model?.status === 1" nbButton [status]="'warning'" (click)="pauseWorkOrderClick()">Pause
+                    Work</button>
+            </div>
+        </form>
+    </nb-card-body>
+    <nb-card-footer class="edit-card-header">
+        <button *ngIf="!editMode" nbButton ghost size="tiny" status="success"
+            (click)="editWorkOrderClick()">Edit</button>
+        <button *ngIf="editMode" nbButton ghost size="tiny" status="success"
+            (click)="updateCancelClick()">Cancel</button>
+        <button *ngIf="editMode" nbButton ghost size="tiny" status="success"
+            (click)="updateWorkOrderClick()">Update</button>
+        <button nbButton ghost size="tiny" status="danger" (click)="deleteWorkOrderClick()">Delete</button>
+    </nb-card-footer>
+</nb-card>
+<div *ngIf="modelId">
+    <nb-card>        
+        <nb-card-body>
+            <div class="col-md-12 center">
+                <h6 *ngIf="model?.workOrderParts.length === 0 && model?.workOrderTasks.length === 0"
+                    class="text-heading">
+                    Add Parts or Tasks to the Work Order
+                </h6>
+                <ngx-workorder-part [workOrderId]="model?.id" [workOrderParts]="model?.workOrderParts"
+                    [editMode]="editDetailsMode"></ngx-workorder-part>
+                <ngx-workorder-task [workOrderId]="model?.id" [workOrderTasks]="model?.workOrderTasks"
+                    [editMode]="editDetailsMode"></ngx-workorder-task>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="edit-card-header">
+            <button *ngIf="!editDetailsMode" nbButton ghost size="tiny" status="success"
+                (click)="enableChildControls()">Edit Details</button>
+            <button *ngIf="editDetailsMode" nbButton ghost size="tiny" status="success"
+                (click)="enableChildControls()">Exit Edit Details</button>
+        </nb-card-footer>
+    </nb-card>
+    <nb-card>
+        <nb-card-header>
+            Log Work
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="workOrderDetailForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="hoursWorked" class="label">Hours Worked</label>
+                            <input id="hoursWorked" type="text" nbInput fullWidth value="{{model?.hoursWorked}}"
+                                placeholder="Hours Worked" formControlName="hoursWorked">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="minutesWorked" class="label">Minutes Worked</label>
+                            <input id="minutesWorked" type="text" nbInput fullWidth value="{{model?.minutesWorked}}"
+                                placeholder="Minutes Worked" formControlName="minutesWorked">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="notes" class="label">Notes</label>
+                            <textarea rows="5" id="notes" type="text" nbInput fullWidth value="{{model?.notes}}"
+                                placeholder="Maintenance Notes" formControlName="notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </nb-card-body>
+    </nb-card>
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card>
+                <nb-card-body>
+                    <div class="persist-button-container">
+                        <button *ngIf="model?.status === 3" nbButton status="success">Already Completed</button>
+                        <button *ngIf="model?.status !== 3" nbButton status="success" (click)="completeWorkOrderClick()">Complete</button>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+</div>

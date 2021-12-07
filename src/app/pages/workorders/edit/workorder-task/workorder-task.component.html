@@ -1,0 +1,48 @@
+<nb-card *ngIf="workOrderTasks?.length">
+    <nb-card-header>Tasks</nb-card-header>
+    <nb-card-body style="padding: 0;">
+        <nb-list>
+            <nb-list-item *ngFor="let model of workOrderTasks; index as i;">
+                <div *ngIf="!editMode" class="form-inline">
+                    <div class="col-md-11">
+                        <div class=" form-group">
+                            <label for="{{'inputTaskDescription' + i}}" class="label-dropdown-inline-items">Task</label>
+                            <textarea id="{{'inputTaskDescription' + i}}" rows="3" type="text" nbInput fullWidth
+                                value="{{model.description}}" placeholder="Describe Task"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="validation-checkboxes">
+                            <nb-checkbox id="{{'isCompleted' + i}}" (checkedChange)="completedClick($event, i)" status="success">Completed
+                            </nb-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="editMode" class="form-inline">
+                    <div class="col-md-10">
+                        <div class=" form-group">
+                            <label for="{{'inputTaskDescription' + i}}" class="label-dropdown-inline-items">Task</label>
+                            <textarea id="{{'inputTaskDescription' + i}}" rows="3" type="text" nbInput fullWidth
+                                value="{{model.description}}" placeholder="Describe Task"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <nb-actions size="small" fullWidth>
+                            <nb-action>
+                                <nb-icon nbTooltip="Save" class="action-icon icon-hover" (click)="saveItemClick(i)"
+                                    icon="save-outline">
+                                </nb-icon>
+                            </nb-action>
+                            <nb-action>
+                                <nb-icon nbTooltip="Remove" class="action-icon icon-hover" (click)="deleteItemClick(i)"
+                                    icon="trash-2-outline">
+                                </nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </div>
+                </div>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>
+<button *ngIf="editMode" nbButton outline size="small" status="info" (click)="addItem()">Add Task</button>

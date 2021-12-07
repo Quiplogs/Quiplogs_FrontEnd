@@ -1,0 +1,76 @@
+<nb-card *ngIf="workOrderParts?.length">
+    <nb-card-header>Parts</nb-card-header>
+    <nb-card-body style="padding: 0;">
+        <nb-list>
+            <nb-list-item *ngFor="let model of workOrderParts; index as i;">
+                <div *ngIf="!editMode" class="form-inline">
+                    <div class="col-md-4">
+                        <div class="item text-heading">
+                            <div>
+                                <label class="label-dropdown-inline-items">Part Code</label>
+                                <h5 class="text-heading">{{model.part?.code}}</h5>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="item text-heading">
+                            <div>
+                                <label class="label-dropdown-inline-items">Required Quantity</label>
+                                <h5 class="text-heading">{{model.quantityRequired}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class=" form-group">
+                            <label for="{{'inputPartquantityUsed' + i}}" class="label-dropdown-inline-items">Quantity
+                                Used</label>
+                            <input type="text" nbInput fullWidth id="{{'inputPartquantityUsed' + i}}"
+                                value="{{model.quantityUsed}}" placeholder="Quantity Used">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="validation-checkboxes">
+                            <nb-checkbox [checked]="model.isCompleted" id="{{'isCompleted' + i}}" (checkedChange)="completedClick($event, i)" status="success">Completed
+                            </nb-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <form *ngIf="editMode" class="form-inline">
+                    <div class="col-md-6">
+                        <div class=" form-group">
+                            <label for="{{'inputPartCode' + i}}" class="label-dropdown-inline-items">Part</label>
+                            <input (click)="openProductPopup(i)" type="text" nbInput fullWidth
+                                id="{{'inputPartCode' + i}}" placeholder="Click to select Part"
+                                value="{{model.part?.code}}">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class=" form-group">
+                            <label for="{{'inputPartQuantityRequired' + i}}"
+                                class="label-dropdown-inline-items">Quantity</label>
+                            <input type="text" nbInput fullWidth id="{{'inputPartQuantityRequired' + i}}"
+                                value="{{model.quantityRequired}}" placeholder="Qty">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2">
+                        <nb-actions size="small" fullWidth>
+                            <nb-action>
+                                <nb-icon nbTooltip="Save" class="action-icon icon-hover" (click)="saveItemClick(i)"
+                                    icon="save-outline">
+                                </nb-icon>
+                            </nb-action>
+                            <nb-action>
+                                <nb-icon nbTooltip="Remove" class="action-icon icon-hover" (click)="deleteItemClick(i)"
+                                    icon="trash-2-outline">
+                                </nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </div>
+                </form>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>
+<button *ngIf="editMode" nbButton outline size="small" status="info" (click)="addItem()">Add Part</button>

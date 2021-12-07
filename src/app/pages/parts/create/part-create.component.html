@@ -1,0 +1,68 @@
+<ngx-ui-loader [loaderId]="'ldr-part-create'" [fgsColor]="'#1a2138'" [fgsType]="'rectangle-bounce'"
+    [hasProgressBar]="false" [overlayColor]="'rgba(40,40,40,.0)'">
+</ngx-ui-loader>
+<div *ngIf="isLoaded">
+    <div class="row">
+        <div class="col-md-6">
+            <nb-card class="actions-card">
+                <nb-card-header>Part</nb-card-header>
+                <nb-card-body>
+                    <form [formGroup]="partForm">
+                        <div class="form-group row">
+                            <label for="inputCode" class="label col-sm-3 col-form-label">Code</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="code" nbInput fullWidth id="inputCode"
+                                    placeholder="Code" value="{{part?.code}}"
+                                    [status]="submitted && formControls.code.errors ? (submitted && formControls.code.invalid  ? 'danger' : 'success') : 'basic'">
+                                <ng-container *ngIf="submitted && formControls.code.invalid">
+                                    <p class="caption status-danger" *ngIf="formControls.code.errors.required">
+                                        Code is required!
+                                    </p>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="label col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="name" nbInput fullWidth id="inputName"
+                                    placeholder="Name" value="{{part?.name}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputDescription" class="label col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-8">
+                                <textarea rows="5" formControlName="description" nbInput id="inputDescription" fullWidth
+                                    placeholder="Description" value="{{part?.description}}"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-md-6">
+            <nb-card>
+                <nb-card-header>Image</nb-card-header>
+                <nb-card-body>
+                    <!--<ngx-image-upload *nbIsGranted="['create', 'comments']" [imageSource]="part?.imageUrl"-->
+                    <ngx-image-upload *ngIf="!part" (fileUploaded)="imageUploaded($event)" [applicationType]="'part'"
+                        (fileRemoved)="imageRemoved($event)" [companyId]="part?.companyId" [id]="part?.id">
+                    </ngx-image-upload>
+                    <ngx-image-upload *ngIf="part" (fileUploaded)="imageUploaded($event)" [applicationType]="'part'"
+                        (fileRemoved)="imageRemoved($event)" [companyId]="part?.companyId" [id]="part?.id">
+                    </ngx-image-upload>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card>
+                <nb-card-body>
+                    <div class="footer">
+                        <button nbButton status="success" (click)="onSubmit()">Submit</button>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+</div>

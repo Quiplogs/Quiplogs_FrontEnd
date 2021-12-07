@@ -1,0 +1,28 @@
+@import '../../../../@theme/styles/themes.scss';
+
+@include nb-install-component() {
+  input {
+    width: 100%;
+  }
+
+  .cancel {
+    margin-right: 1rem;
+  }
+}
+
+.stepper {
+  min-width: 250px;
+}
+
+.schedule-step-buttons{
+  padding-top: 3em;
+}
+
+:host ::ng-deep nb-stepper .step-content {
+  text-align: center;
+
+  button {
+    cursor: pointer;
+    margin: 0.5rem;
+  }
+}

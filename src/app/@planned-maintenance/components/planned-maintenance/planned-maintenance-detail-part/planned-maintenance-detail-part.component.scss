@@ -1,0 +1,12 @@
+:host button {
+    margin: 10px;
+}
+
+:host ::ng-deep nb-card nb-card-header {
+    text-align: left;
+    padding: 0.5em;
+}
+
+.icon-hover {
+    cursor: pointer;
+}

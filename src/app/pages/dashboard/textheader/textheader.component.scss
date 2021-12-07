@@ -1,0 +1,34 @@
+@import "../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  .assets-total {
+    background: #800021;
+  }
+
+  .assets-maintenance {
+    background: #E8A93F;
+  }
+
+  .workorder-open {
+    background: #007A7B;
+  }
+
+  .workorder-closed {
+    background: #003F5A;
+  }
+
+  .summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-between;
+    padding: 1.5rem 4rem 1rem;
+    border-left: none;
+    border-right: none;
+    min-height: 12em;
+
+    .h7, .h5, .h3 {
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,151 @@
+<ngx-ui-loader [loaderId]="'ldr-model-edit'" [fgsColor]="'#1a2138'" [fgsType]="'rectangle-bounce'"
+    [hasProgressBar]="false" [overlayColor]="'rgba(40,40,40,.0)'">
+</ngx-ui-loader>
+<div *ngIf="isLoaded">
+    <div class="row">
+        <div class="col-md-6">
+            <nb-card class="actions-card">
+                <nb-card-header>User</nb-card-header>
+                <nb-card-body>
+                    <form [formGroup]="modelForm">
+                        <div class="form-group row">
+                            <label for="firstName" class="label col-sm-3 col-form-label">First Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="firstName" nbInput fullWidth id="firstName"
+                                    placeholder="First Name" value="{{model?.firstName}}"
+                                    [status]="submitted && formControls.firstName.errors ? (submitted && formControls.firstName.invalid  ? 'danger' : 'success') : 'basic'">
+                                <ng-container *ngIf="submitted && formControls.firstName.invalid">
+                                    <p class="caption status-danger" *ngIf="formControls.firstName.errors.required">
+                                        First Name is required!
+                                    </p>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="label col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="lastName" nbInput fullWidth id="lastName"
+                                    placeholder="Last Name" value="{{model?.lastName}}"
+                                    [status]="submitted && formControls.lastName.errors ? (submitted && formControls.lastName.invalid  ? 'danger' : 'success') : 'basic'">
+                                <ng-container *ngIf="submitted && formControls.lastName.invalid">
+                                    <p class="caption status-danger" *ngIf="formControls.lastName.errors.required">
+                                        Last Name is required!
+                                    </p>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="label col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="email" nbInput fullWidth id="email"
+                                    placeholder="Email" value="{{model?.email}}"
+                                    [status]="submitted && formControls.email.errors ? (submitted && formControls.email.invalid  ? 'danger' : 'success') : 'basic'">
+                                <ng-container *ngIf="submitted && formControls.email.invalid">
+                                    <p class="caption status-danger" *ngIf="formControls.email.errors.required">
+                                        Email is required!
+                                    </p>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputLocation" class="label col-sm-3 col-form-label">Location</label>
+                            <div class="col-sm-8">
+                                <nb-select formControlName="locationId" *ngIf="locationList" fullWidth="true"
+                                    placeholder="Select a location" selected="{{asset?.locationId}}"
+                                    [status]="submitted && formControls.locationId.errors ? (submitted && formControls.locationId.invalid  ? 'danger' : 'success') : 'basic'">
+                                    <nb-option *ngFor="let item of locationList;" value="{{item.id}}">
+                                        {{item.name}}
+                                    </nb-option>
+                                    <ng-container *ngIf="submitted && formControls.locationId.invalid">
+                                        <p class="caption status-danger"
+                                            *ngIf="formControls.locationId.errors.required">
+                                            Location is required!
+                                        </p>
+                                    </ng-container>
+                                </nb-select>
+                            </div>
+                        </div>
+                    </form>
+                </nb-card-body>
+            </nb-card>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <nb-card>
+                        <nb-card-header>Role</nb-card-header>
+                        <nb-card-body>
+                            <form [formGroup]="modelForm">
+                                <nb-select formControlName="role" fullWidth="true" placeholder="Select a Role"
+                                    [(selected)]="role"
+                                    [status]="submitted && formControls.role.errors ? (submitted && formControls.role.invalid  ? 'danger' : 'success') : 'basic'">
+                                    <nb-option value="SuperAdmin">Super Admin</nb-option>
+                                    <nb-option value="Admin">Admin</nb-option>
+                                    <nb-option value="Technician">Technician</nb-option>
+                                    <ng-container *ngIf="submitted && formControls.role.invalid">
+                                        <p class="caption status-danger" *ngIf="formControls.role.errors.required">
+                                            User Role is required!
+                                        </p>
+                                    </ng-container>
+                                </nb-select>
+                            </form>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <nb-card>
+                        <nb-card-header>
+                            <div *ngIf="modelId">
+                                Change Password
+                            </div>
+                            <div *ngIf="!modelId">
+                                Set Password
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            <form [formGroup]="modelForm">
+                                <div *ngIf="modelId" class="form-group row">
+                                    <label for="currentPassword" class="label col-sm-3 col-form-label">Current
+                                        Password</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" formControlName="currentPassword" nbInput fullWidth
+                                            id="currentPassword" placeholder="Current Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="password" class="label col-sm-3 col-form-label">New Password</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" formControlName="password" nbInput fullWidth
+                                            id="password" placeholder="New Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="reenteredPassword" class="label col-sm-3 col-form-label">Re-Enter
+                                        New Password</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" formControlName="reenteredPassword" nbInput fullWidth
+                                            id="reenteredPassword" placeholder="Re-enter new password">
+                                    </div>
+                                </div>
+                            </form>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card>
+                <nb-card-body>
+                    <div class="footer">
+                        <button *ngIf="modelId" class="submit" nbButton status="danger" (click)="delete()">Delete</button>
+                        <button nbButton status="success" (click)="onSubmit()">Submit</button>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+</div>

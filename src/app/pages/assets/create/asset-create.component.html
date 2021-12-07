@@ -1,0 +1,154 @@
+<ngx-ui-loader [loaderId]="'ldr-asset-create'" [fgsColor]="'#1a2138'" [fgsType]="'rectangle-bounce'"
+  [hasProgressBar]="false" [overlayColor]="'rgba(40,40,40,.0)'">
+</ngx-ui-loader>
+<div *ngIf="isLoaded && !assetId">
+  <div class="row">
+    <div class="col-md-6">
+      <nb-card>
+        <nb-card-header>
+          Create Asset
+        </nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="assetForm">
+            <div class="form-group row">
+              <label for="inputName" class="label col-sm-3 col-form-label">Name</label>
+              <div class="col-sm-8">
+                <input type="text" formControlName="name" nbInput fullWidth id="inputName" placeholder="Name"
+                  value="{{asset?.name}}" autocomplete="off"
+                  [status]="submitted && f.name.errors ? (submitted && f.name.invalid  ? 'danger' : 'success') : 'basic'">
+                <ng-container *ngIf="submitted && f.name.invalid && f.name.touched">
+                  <p class="caption status-danger" *ngIf="f.name.errors.required">
+                    Asset Name is required!
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputMake" class="label col-sm-3 col-form-label">Make</label>
+              <div class="col-sm-8">
+                <input type="text" formControlName="make" nbInput fullWidth id="inputMake" placeholder="Make"
+                  value="{{asset?.make}}" autocomplete="off">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputModel" class="label col-sm-3 col-form-label">Model</label>
+              <div class="col-sm-8">
+                <input type="text" formControlName="model" nbInput fullWidth id="inputModel" placeholder="Model"
+                  value="{{asset?.model}}" autocomplete="off">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputSerialNumber" class="label col-sm-3 col-form-label">Serial Number</label>
+              <div class="col-sm-8">
+                <input type="text" formControlName="serialNumber" nbInput fullWidth id="inputSerialNumber"
+                  placeholder="Serial Number" value="{{asset?.serialNumber}}" autocomplete="off">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputManufacturedDate" class="label col-sm-3 col-form-label">Manufactured Date</label>
+              <div class="col-sm-8">
+                <input type="text" formControlName="manufacturedDate" nbInput fullWidth id="inputManufacturedDate"
+                  placeholder="Date Manufactured" value="{{asset?.manufacturedDate}}"
+                  [nbDatepicker]="inputManufacturedDate" autocomplete="off">
+                <nb-datepicker #inputManufacturedDate></nb-datepicker>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputDatePurchased" class="label col-sm-3 col-form-label">Purchased Date</label>
+              <div class="col-sm-8">
+                <input type="text" formControlName="purchasedDate" nbInput fullWidth id="inputDatePurchased"
+                  placeholder="Date aquired" value="{{asset?.purchasedDate}}" [nbDatepicker]="inputDatePurchased"
+                  autocomplete="off">
+                <nb-datepicker #inputDatePurchased></nb-datepicker>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputUom" class="label col-sm-3 col-form-label">Work Unit of Measure</label>
+              <div class="col-sm-8">
+                <nb-select formControlName="uom" fullWidth="true" placeholder="Select a UoM" selected="{{asset?.uom}}">
+                  <nb-option value="Hours">Hours</nb-option>
+                  <nb-option value="Minutes">Minutes</nb-option>
+                  <nb-option value="Km">Km</nb-option>
+                  <nb-option value="Miles">Mi</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputCurrentWorkDone" class="label col-sm-3 col-form-label">Current Work Done</label>
+              <div class="col-sm-8">
+                <input type="text" formControlName="currentWorkDone" nbInput fullWidth id="inputCurrentWorkDone"
+                  placeholder="Work dont until now" value="{{asset?.currentWorkDone}}" autocomplete="off">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputLocation" class="label col-sm-3 col-form-label">Location</label>
+              <div class="col-sm-8">
+                <nb-select formControlName="locationId" *ngIf="locationList" fullWidth="true"
+                  placeholder="Select a location" selected="{{asset?.locationId}}"
+                  [status]="submitted && f.locationId.errors ? (submitted && f.locationId.invalid  ? 'danger' : 'success') : 'basic'">
+                  <nb-option *ngFor="let item of locationList;" value="{{item.id}}">
+                    {{item.name}}
+                  </nb-option>
+                  <ng-container *ngIf="submitted && f.locationId.invalid && f.locationId.touched">
+                    <p class="caption status-danger" *ngIf="f.locationId.errors.required">
+                      Asset Location is required!
+                    </p>
+                  </ng-container>
+                </nb-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="isRecurring" class="label col-sm-3 col-form-label"></label>
+              <div class="col-sm-8">
+                <nb-checkbox status="success" formControlName="isRecurring" (checkedChange)="updateRecurring($event)">
+                  Should Asset have Planned Maintenance?
+                </nb-checkbox>
+              </div>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-md-6">
+      <nb-card>
+        <nb-card-header>
+          Image
+        </nb-card-header>
+        <nb-card-body>
+          <ngx-image-upload (fileUploaded)="imageUploaded($event)" [applicationType]="'asset'"
+            (fileRemoved)="imageRemoved($event)">
+          </ngx-image-upload>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLoaded && isPMSelected && assetId">
+  <div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <nb-card-header>
+          Add Planned Maintenance for: {{asset?.name}}
+        </nb-card-header>
+        <ngx-planned-maintenance-accordion [AssetId]="assetId" [AssetLocationId]="assetLocationId" [AssetUoM]="assetUom">
+        </ngx-planned-maintenance-accordion>
+      </nb-card>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <div class="persist-button-container">
+          <div *ngIf="isPMSelected && !shouldSubmit">
+            <button nbButton status="success" (click)="onSubmitNext()">Next</button>
+          </div>
+          <div *ngIf="!isPMSelected || shouldSubmit">
+            <button nbButton status="success" (click)="onSubmit()">Submit</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

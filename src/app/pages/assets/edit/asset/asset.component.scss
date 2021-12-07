@@ -1,0 +1,45 @@
+@import '../../../../@theme/styles/themes';
+
+.button {
+    margin-top: 1.2em;
+}
+
+.work-done-header {
+    border-top: 1px solid #bbb;
+    text-align: center;
+    padding-top: 1em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-family: 'Russo One', sans-serif;    
+}
+
+.work-done-display {
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+}
+
+.work-order-status {
+    padding: 0;
+}
+
+@include nb-install-component() {
+  .summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-between;
+    padding: 1.5rem 4rem 1rem;
+    border: 1px solid nb-theme(border-basic-color-3);
+    border-left: none;
+    border-right: none;
+  }
+}
+
+.footer {
+  text-align: right;
+  align-content: right;
+}
+
+.submit {
+  margin-right: 2rem;
+}

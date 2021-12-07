@@ -1,0 +1,146 @@
+@import './variables';
+
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.is-striped {
+    background-color: #e8e8e8;
+}
+
+/* Table column sizing
+================================== */
+.data-content-cell {
+    width: 20%;
+}
+
+.edit-cell {
+    width: 13%;
+}
+
+/* Apply styles
+================================== */
+.Rtable {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 3em;
+    padding: 0;
+
+    .Rtable-row {
+        width: 100%;
+        min-height: 40px;
+        display: flex;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease-in-out;
+
+        .Rtable-cell {
+            box-sizing: border-box;
+            flex-grow: 1;
+            padding: 0.8em 1.2em;
+            overflow: hidden; // Or flex might break
+            list-style: none;
+
+            &.column-heading {
+                background-color: white;
+                color: black;
+                padding: 1em;
+                margin-bottom: 15px;
+                border-bottom: 2px solid $color-five;
+            }
+
+            .Rtable-cell--heading {
+                display: none;
+            }
+
+            .Rtable-cell--content {
+                a {
+                    font-size: 1.8em;
+                    color: $color-four;
+                    cursor: pointer;
+                }
+
+                a:hover {
+                    background-color: transparent;
+                }
+
+                .data-content-important {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+/* Responsive
+==================================== */
+@media all and (max-width: $breakpoint) {
+    
+    .is-striped {
+        background-color: white;
+    }
+
+    .Rtable--collapse {
+        display: block;
+        width: 100%;
+        padding: 1em;
+        box-shadow: none;
+
+        .Rtable-row {
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 2em;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+
+            .Rtable-cell {
+                width: 100% !important;
+                display: flex;
+                align-items: center;
+
+                .Rtable-cell--heading {
+                    display: inline-block;
+                    flex: 1;
+                    max-width: 120px;
+                    min-width: 120px;
+                    color: $color-five;
+                    font-weight: 700;
+                    border-right: 1px solid #ccc;
+                    margin-right: 1em;
+                }
+
+                .Rtable-cell--content {
+                    flex: 2;
+                    padding-left: 1em;
+                }
+            }
+        }
+
+        .topic-cell {
+            background-color: $color-five;
+            color: white;
+            font-weight: 700;
+            order: -1;
+
+            .Rtable-cell--content {
+                padding-left: 0 !important;
+            }
+        }
+
+        .Rtable-row--head {
+            display: none;
+        }
+    }
+}
+
+.no-flexbox .Rtable {
+    display: block;
+
+    &.Rtable-cell {
+        width: 100%;
+    }
+}

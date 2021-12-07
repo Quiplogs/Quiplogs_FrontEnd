@@ -1,0 +1,49 @@
+@import '../../../../@theme/styles/variables';
+@import '../../../../@theme/styles/pager';
+
+.container {
+  text-align: center;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  min-width: 100%;
+
+  button {
+    cursor: pointer;
+    margin-top: 15px;
+    margin: 0.5rem;
+    padding-bottom: 5em;
+  }
+}
+
+:host ::ng-deep nb-accordion nb-accordion-item .planned-maintenance-accordion-header {
+  background-color: $color-four;
+  color: #fff;
+  border-color: #fff;
+  border-radius: 0;
+  padding: 0.75em;
+  display: flex;
+  justify-content: space-between;
+
+  .title-right {
+    padding-right: 4em;
+  }
+}
+
+:host ::ng-deep nb-accordion nb-accordion-item .planned-maintenance-accordion-body {
+  background-color: #fff;
+  padding: 0;
+  margin-bottom: 5px;
+  margin-top: 0px;
+
+  nb-card {
+    margin: 0;
+  }
+}
+
+:host ::ng-deep nb-accordion nb-accordion-item-body .item-body {
+  padding: 0;
+}
+
+.error {
+  margin-top: 15px;
+}

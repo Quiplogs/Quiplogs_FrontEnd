@@ -1,0 +1,64 @@
+@import "../../../@theme/styles/themes";
+@import "../../../@theme/styles/layout";
+@import "../../../@theme/styles/variables";
+
+@include nb-install-component() {
+    nb-list {
+        overflow-x: hidden;
+    }
+
+    nb-list-item {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin: 0 -0.25rem;
+    }
+
+    .workeorder-due-date,
+    .workeorder-create-date,
+    .workorder-reference-number,
+    .workorder-assigned-technician,
+    .workorder-link {
+        flex: 1 0 auto;
+        margin: 0 0.25rem;
+        cursor: pointer;
+    }
+
+    .value {
+        margin-top: 0.25rem;
+    }
+
+    .arrowed {
+        position: relative;
+        margin: 0 20px 15px 0;
+    }
+
+    .arrow-link {
+        /* more triangle */
+        height: 10px; width: 10px;
+        border-width: 3px 3px 0 0;
+        transform: rotate(45deg);
+    }
+    
+    .arrow-link:before, .arrow-link:after {
+        content: '';
+        position: absolute;
+        display: block;
+        height: 10px; width: 10px;
+        border-width: 3px 3px 0 0;
+    }
+    
+    .arrow-link:before {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-width: 3px 3px 0 0;
+        /* top - distance minus border */
+        top: 7px; left: -10px;
+    }
+    
+    .arrow-link:after {
+        border: 5px solid $color-five;
+        border-width: 3px 3px 0 0;
+        /* top - distance plus border */
+        top: -13px; left: 10px;
+    }
+}

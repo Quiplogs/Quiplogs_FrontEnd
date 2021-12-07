@@ -1,0 +1,134 @@
+<nb-card>
+    <nb-card-header>
+        Create Work Order
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="workOrderCreateForm">
+            <div class="row center">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="priority" class="labelform-control-label">Priority</label>
+                        <nb-select formControlName="priority" fullWidth="true" placeholder="Select a Priority">
+                            <nb-option value="0">Low</nb-option>
+                            <nb-option value="1">Medium</nb-option>
+                            <nb-option value="2">High</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="referenceNumber" class="label">Reference Number</label>
+                        <input id="referenceNumber" type="text" nbInput fullWidth value="{{model?.referenceNumber}}"
+                            placeholder="Reference Number" formControlName="referenceNumber">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="assetId" class="label">Asset </label>
+                        <input (click)="openAssetSearchDialog()" id="assetId" type="text" nbInput fullWidth
+                            value="{{model?.asset?.name}}" placeholder="Asset Name" formControlName="assetId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="inputLocation" class="label col-form-label">Location</label>
+                        <nb-select formControlName="locationId" *ngIf="locationList" fullWidth="true"
+                            placeholder="Select a location" selected="{{model?.locationId}}">
+                            <nb-option *ngFor="let item of locationList;" [value]="item.id">
+                                {{item.name}}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="technicianId" class="labelform-control-label">Technician </label>
+                        <nb-select formControlName="technicianId" *ngIf="technicianList" fullWidth="true"
+                            placeholder="Select a Technician">
+                            <nb-option *ngFor="let technician of technicianList" [value]="technician.id">
+                                {{technician.firstName}}
+                            </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>
+
+<!-- Parts -->
+<nb-card>
+    <nb-card-header>Parts</nb-card-header>
+    <nb-card-body style="padding: 0;">
+        <nb-list *ngIf="workOrderParts?.length">
+            <nb-list-item *ngFor="let part of workOrderParts; index as i;">
+                <form class="form-inline">
+                    <div class="col-md-8">
+                        <div class=" form-group">
+                            <label for="{{'inputPartCode' + i}}" class="label-dropdown-inline-items">Part</label>
+                            <input (click)="openProductPopup(i)" type="text" nbInput fullWidth
+                                id="{{'inputPartCode' + i}}" placeholder="Click to select Part"
+                                value="{{part.part?.code}}">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class=" form-group">
+                            <label for="{{'inputPartQuantityRequired' + i}}"
+                                class="label-dropdown-inline-items">Quantity</label>
+                            <input type="text" nbInput fullWidth id="{{'inputPartQuantityRequired' + i}}"
+                                value="{{part.quantityRequired}}" placeholder="Qty">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <nb-actions size="small" fullWidth>
+                            <nb-action>
+                                <nb-icon nbTooltip="Remove" class="action-icon icon-hover" (click)="deletePartClick(i)"
+                                    icon="trash-2-outline">
+                                </nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </div>
+                </form>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer class="line-item-button">
+        <button nbButton [status]="'success'" (click)="addPartLine()"> Add Part </button>
+    </nb-card-footer>
+</nb-card>
+
+<!-- Tasks -->
+<nb-card>
+    <nb-card-header>Tasks</nb-card-header>
+    <nb-card-body style="padding: 0;">
+        <nb-list *ngIf="workOrderTasks?.length">
+            <nb-list-item *ngFor="let task of workOrderTasks; index as i;">
+                <div class="form-inline">
+                    <div class="col-md-10">
+                        <div class=" form-group">
+                            <label for="{{'inputTaskDescription' + i}}" class="label-dropdown-inline-items">Task</label>
+                            <textarea id="{{'inputTaskDescription' + i}}" rows="3" type="text" nbInput fullWidth
+                            [(ngModel)]="task.description" placeholder="Describe Task"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <nb-actions size="small" fullWidth>
+                            <nb-action>
+                                <nb-icon nbTooltip="Remove" class="action-icon icon-hover" (click)="deleteTaskClick(i)"
+                                    icon="trash-2-outline">
+                                </nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </div>
+                </div>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+    <nb-card-footer class="line-item-button">
+        <button nbButton [status]="'success'" (click)="addTaskLine()"> Add Task </button>
+    </nb-card-footer>
+</nb-card>
+
+<div class="row add-button">
+    <button nbButton [status]="'success'" (click)="submitWorkOrder()"> Create </button>
+</div>

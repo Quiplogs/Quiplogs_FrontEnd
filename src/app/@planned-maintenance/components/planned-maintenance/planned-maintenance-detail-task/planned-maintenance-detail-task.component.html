@@ -1,0 +1,37 @@
+<nb-card *ngIf="plannedMaintenanceTasks?.length">
+    <nb-card-header>Tasks</nb-card-header>
+    <nb-card-body style="padding: 0;">
+        <nb-list>
+            <nb-list-item *ngFor="let model of plannedMaintenanceTasks; index as i;">
+                <form class="form-inline">
+                    <div class="col-md-10">
+                        <div class=" form-group">
+                            <label for="{{'inputTaskDescription' + i}}" class="label-dropdown-inline-items">Task</label>
+                            <textarea id="{{'inputTaskDescription' + i}}" rows="3" type="text" nbInput fullWidth
+                                value="{{model.description}}" placeholder="Describe Task" [disabled]="!model.canEdit"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <nb-actions size="small" fullWidth>
+                            <nb-action *ngIf="!model.canEdit">
+                                <nb-icon nbTooltip="Edit" class="action-icon icon-hover" (click)="editItemClick(i)"
+                                    icon="edit-2-outline"></nb-icon>
+                            </nb-action>
+                            <nb-action *ngIf="model.canEdit">
+                                <nb-icon nbTooltip="Save" class="action-icon icon-hover" (click)="saveItemClick(i)"
+                                    icon="save-outline">
+                                </nb-icon>
+                            </nb-action>
+                            <nb-action>
+                                <nb-icon nbTooltip="Remove" class="action-icon icon-hover" (click)="deleteItemClick(i)"
+                                    icon="trash-2-outline">
+                                </nb-icon>
+                            </nb-action>
+                        </nb-actions>
+                    </div>
+                </form>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>
+<button nbButton outline size="small" status="info" (click)="addItem()">Add Task</button>

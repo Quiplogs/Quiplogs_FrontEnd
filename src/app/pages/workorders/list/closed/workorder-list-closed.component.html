@@ -1,0 +1,89 @@
+<nb-card *ngIf="IsLoaded" class="actions-card">
+    <nb-card-header>
+        Work Orders - Closed
+    </nb-card-header>
+    <nb-card-body>
+        <ngx-grid-filter (onSearch)="filterByName($event)" [searchKeyWord]="'Reference Number'"></ngx-grid-filter>
+        <div class="wrapper">
+            <div class="Rtable Rtable--5cols Rtable--collapse">
+                <div class="Rtable-row Rtable-row--head">
+                    <div class="Rtable-cell data-content-cell column-heading">Reference</div>
+                    <div class="Rtable-cell data-content-cell column-heading">Priority</div>
+                    <div class="Rtable-cell data-content-cell column-heading">Technician</div>
+                    <div class="Rtable-cell data-content-cell column-heading">Asset</div>
+                    <div class="Rtable-cell data-content-cell column-heading">Location</div>
+                    <div class="Rtable-cell edit-cell column-heading">Edit</div>
+                    <div class="Rtable-cell edit-cell column-heading">Delete</div>
+                </div>
+                <div *ngFor="let item of pagedList.pagedItems; let ind = index;"
+                    [className]="ind % 2 == 0 ? 'Rtable-row is-striped' : 'Rtable-row'">
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Reference</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            <span class="data-content-important">
+                                {{item.referenceNumber}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Priority</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            <span class="data-content-important" *ngIf="item?.priority === 0">Low</span>
+                            <span class="data-content-important" *ngIf="item?.priority === 1">Medium</span>
+                            <span class="data-content-important" *ngIf="item?.priority === 2">High</span>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Technician</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            {{item.technician.firstName}} {{item.technician.lastName}}
+                        </div>
+                    </div>
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Asset</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            {{item.asset.name}}
+                        </div>
+                    </div>
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Location</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            {{item.location.name}}
+                        </div>
+                    </div>
+                    <div class="Rtable-cell edit-cell">
+                        <div class="Rtable-cell--heading">Edit</div>
+                        <div class="Rtable-cell--content edit-content">
+                            <a [routerLink]="['/workorders/edit', item.id]"><nb-icon icon="edit-2-outline"></nb-icon></a>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell Rtable-cell--foot edit-cell">
+                        <div class="Rtable-cell--heading">Remove</div>
+                        <div class="Rtable-cell--content edit-content">
+                            <a (click)="delete($event, item)"><nb-icon icon="trash-2-outline"></nb-icon></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pager-wrapper">
+            <div class="intWrapper">
+                <ul *ngIf="pagedList.pager.pages && pagedList.pager.pages.length" class="mainMenu">
+                    <li [ngClass]="{disabled:pagedList.pager.currentPage === 1}" class="page-item">
+                        <a [routerLink]="['workorders/list']"
+                            [queryParams]="{ page: pagedList.pager.currentPage - 1 }" class="page-link">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pagedList.pager.pages" [ngClass]="{active:pagedList.pager.currentPage === page}"
+                        class="page-item">
+                        <a [routerLink]="['workorders/list']" [queryParams]="{ page: page }"
+                            class="page-link">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pagedList.pager.currentPage === pagedList.pager.totalPages}" class="page-item">
+                        <a [routerLink]="['workorders/list']"
+                            [queryParams]="{ page: pagedList.pager.currentPage + 1 }" class="page-link">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

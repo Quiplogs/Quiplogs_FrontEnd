@@ -1,0 +1,27 @@
+@import "../../../@theme/styles/themes.scss";
+
+@include nb-install-component() {
+  .radio-selector {
+    display: inline-block;
+  }
+
+  .cancel {
+    margin-right: 1rem;
+  }
+
+  .space {
+    margin: 0;
+    padding: 0;
+    height: 10px;
+  }
+
+  .footer {
+    text-align: right;
+    align-content: right;
+  }
+
+  span {
+    font-size: small;
+    font-style: italic;
+  }
+}

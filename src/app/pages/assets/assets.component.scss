@@ -1,0 +1,62 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .buttons-row {
+    margin: -0.5rem;
+  }
+
+  button[nbButton] {
+    margin: 0.5rem;
+  }
+
+  .action-icon {
+    @include nb-ltr(margin-right, 0.5rem);
+    @include nb-rtl(margin-left, 0.5rem);
+  }
+
+  .actions-card {
+    height: 8rem;
+  }
+}
+
+.wrapper {
+  width     : 100%;
+  text-align: center;
+}
+
+.intWrapper {
+  display: inline-block;
+}
+
+.mainMenu {
+  padding   : 0;
+  min-height: 40px;
+  margin    : auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  float      : left;
+  font-size  : 15px;
+  line-height: 40px;
+  padding    : 5px
+}
+
+ul li A {
+  display        : block;
+  color          : black;
+  min-height     : 40px;
+  padding        : 0 36px;
+}
+
+a:hover {
+  background-color: #F5F5F5;
+}
+
+.page-item.active .page-link {
+  background-color: #0F292F;
+  color: white;
+}

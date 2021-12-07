@@ -1,0 +1,13 @@
+@import "../../../../@theme/styles/variables";
+
+:host button {
+    margin: 10px;
+}
+
+.icon-hover {
+    cursor: pointer;
+}
+
+h6 {
+    color: $color-five;
+}

@@ -1,0 +1,64 @@
+<div class="container">
+    <ngx-ui-loader [loaderId]="'ldr-part-list'" [fgsColor]="'#1a2138'" [fgsType]="'rectangle-bounce'"
+        [hasProgressBar]="false" [overlayColor]="'rgba(40,40,40,.0)'">
+    </ngx-ui-loader>
+    <nb-card *ngIf="IsLoaded" class="actions-card">
+        <nb-card-header>
+            Parts
+        </nb-card-header>
+        <nb-card-body>
+            <ngx-grid-filter (onSearch)="filterByName($event)"></ngx-grid-filter>
+            <div class="wrapper">
+                <div class="Rtable Rtable--3cols Rtable--collapse">
+                    <div class="Rtable-row Rtable-row--head">
+                        <div class="Rtable-cell data-content-cell column-heading">Code</div>
+                        <div class="Rtable-cell data-content-cell column-heading">Name</div>
+                        <div class="Rtable-cell data-content-cell column-heading">Descriptions</div>
+                    </div>
+                    <div *ngFor="let item of pagedList.pagedItems; let ind = index;"
+                        [className]="ind % 2 == 0 ? 'Rtable-row is-striped' : 'Rtable-row'"
+                        (click)="linkModel(ind)">
+                        <div class="Rtable-cell data-content-cell">
+                            <div class="Rtable-cell--heading">Code</div>
+                            <div class="Rtable-cell--content data-content-content">
+                                <span class="data-content-important">
+                                    {{item.code}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="Rtable-cell data-content-cell">
+                            <div class="Rtable-cell--heading">Name</div>
+                            <div class="Rtable-cell--content data-content-content">
+                                {{item.name}}
+                            </div>
+                        </div>
+                        <div class="Rtable-cell data-content-cell">
+                            <div class="Rtable-cell--heading">Description</div>
+                            <div class="Rtable-cell--content data-content-content">
+                                {{item.description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pager-wrapper">
+                <div class="intWrapper">
+                    <ul *ngIf="pagedList.pager.pages && pagedList.pager.pages.length" class="mainMenu">
+                        <li [ngClass]="{disabled:pagedList.pager.currentPage === 1}" class="page-item">
+                            <a (click)="loadPage(pagedList.pager.currentPage - 1)" class="page-link"><</a>
+                        </li>
+                        <li *ngFor="let page of pagedList.pager.pages"
+                            [ngClass]="{active:pagedList.pager.currentPage === page}" class="page-item">
+                            <a (click)="loadPage(page)"
+                                class="page-link">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pagedList.pager.currentPage === pagedList.pager.totalPages}"
+                            class="page-item">
+                            <a (click)="loadPage(pagedList.pager.currentPage + 1)" class="page-link">></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>

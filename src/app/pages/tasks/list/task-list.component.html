@@ -1,0 +1,72 @@
+<ngx-ui-loader [loaderId]="'ldr-task-list'" [fgsColor]="'#1a2138'" [fgsType]="'rectangle-bounce'"
+    [hasProgressBar]="false" [overlayColor]="'rgba(40,40,40,.0)'">
+</ngx-ui-loader>
+<nb-card *ngIf="isLoaded" class="actions-card">
+    <nb-card-header>
+        Tasks
+    </nb-card-header>    
+    <nb-card-body>        
+        <ngx-grid-filter (onSearch)="filterByName($event)"></ngx-grid-filter>
+        <div *ngIf="pageOfItems.length == 0">
+            <span>There are no Tasks</span>
+        </div>
+        <div class="wrapper" *ngIf="pageOfItems.length > 0">
+            <div class="Rtable Rtable--5cols Rtable--collapse">
+                <div class="Rtable-row Rtable-row--head">
+                    <div class="Rtable-cell data-content-cell column-heading">Name</div>
+                    <div class="Rtable-cell data-content-cell column-heading">Description</div>
+                    <div class="Rtable-cell edit-cell column-heading">Edit</div>
+                    <div class="Rtable-cell edit-cell column-heading">Delete</div>
+                </div>
+                <div *ngFor="let item of pageOfItems; let ind = index;"
+                    [className]="ind % 2 == 0 ? 'Rtable-row is-striped' : 'Rtable-row'">
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Name</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            <span class="data-content-important">
+                                {{item.name}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell data-content-cell">
+                        <div class="Rtable-cell--heading">Description</div>
+                        <div class="Rtable-cell--content data-content-content">
+                            {{item.description}}
+                        </div>
+                    </div>
+                    <div class="Rtable-cell edit-cell">
+                        <div class="Rtable-cell--heading">Edit</div>
+                        <div class="Rtable-cell--content edit-content">
+                            <a (click)="edit($event, item)"><i class="ion-edit"></i></a>
+                        </div>
+                    </div>
+                    <div class="Rtable-cell Rtable-cell--foot edit-cell">
+                        <div class="Rtable-cell--heading">Remove</div>
+                        <div class="Rtable-cell--content edit-content">
+                            <a (click)="delete($event, item)"><i class="ion-trash-b"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pager-wrapper">
+            <div class="intWrapper">
+                <ul *ngIf="pager.pages && pager.pages.length" class="mainMenu">
+                    <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+                        <a [routerLink]="['/pages/tasks/list']"
+                            [queryParams]="{ page: pager.currentPage - 1 }" class="page-link">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+                        class="page-item">
+                        <a [routerLink]="['/pages/tasks/list']" [queryParams]="{ page: page }"
+                            class="page-link">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+                        <a [routerLink]="['/pages/tasks/list']"
+                            [queryParams]="{ page: pager.currentPage + 1 }" class="page-link">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

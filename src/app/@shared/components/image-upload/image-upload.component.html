@@ -1,0 +1,24 @@
+<div class="file-upload-area" [attr.data-text]="fileName">
+    <input name="file-upload-field" type="file" class="file-upload-field" accept="acceptedFileTypes"
+        (change)="processFile($event)">
+</div>
+<div *ngIf="ImageSource">
+    <div class="row">
+        <div class="image-thumbnail">
+            <img [src]="ImageSource">
+        </div>
+    </div>
+    <div class="row">
+        <div class="image-edit-buttons">
+            <button (click)="removeImage()" nbButton nbTooltip="Remove Image" nbTooltipStatus="danger" outline
+                status="danger" size="small">
+                <nb-icon icon="trash-2-outline"></nb-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="!ImageSource">
+    <div class="image-thumbnail" *ngIf="imagePreview">
+        <img [src]="sanitizer.bypassSecurityTrustUrl(imagePreview)">
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@import "../../../@theme/styles/themes.scss";
+
+@include nb-install-component() {
+
+  .container {
+    padding: 1em;
+  }
+
+  .cancel {
+    margin-right: 1rem;
+  }
+
+  .space {
+    margin: 0;
+    padding: 0;
+    height: 10px;
+  }
+
+  .footer {
+    text-align: right;
+    align-content: right;
+  }
+}

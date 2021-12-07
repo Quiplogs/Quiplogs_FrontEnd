@@ -1,0 +1,36 @@
+@import './themes';
+@import './variables';
+
+@mixin nb-overrides() {
+  nb-select.size-medium button {
+    padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
+
+    nb-icon {
+      right: 0.41rem !important;
+    }
+  }
+
+  nb-card-header {
+    background-color: $card-header-background-color;
+    color: $card-header-color;
+  }
+
+  nb-actions {
+     cursor: pointer;
+     
+  }
+
+  .label {
+    color: black;
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .label-dropdown-inline-items {
+    color: #8f9bb3;
+    font-family: Open Sans, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1rem;
+  }
+}
