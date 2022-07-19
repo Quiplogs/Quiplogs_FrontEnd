@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { PlannedMaintenance } from '../../../models/plannedMaintenance';
 import { DialogDeleteComponent } from '../../../../@shared/components/dialog-delete/dialog-delete.component';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { PlannedMaintenanceService } from '../../../services/plannedMaintenance/planned-maintenance.service';
 import { UserService } from '../../../../@core/services';
 
@@ -18,12 +18,12 @@ export class PlannedMaintenanceDetailComponent implements OnInit {
   index: string;
 
   public editMode: boolean = true;
-  public detailForm: FormGroup;
+  public detailForm: UntypedFormGroup;
   public technicianList: any = null;
 
   constructor(
     private dialogService: NbDialogService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private dataService: PlannedMaintenanceService,
     private userService: UserService,
   ) { }

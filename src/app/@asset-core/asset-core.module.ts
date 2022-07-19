@@ -35,41 +35,37 @@ export const ASSET_CORE_PROVIDERS = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NbActionsModule,
-    NbAlertModule,
-    NbCardModule,
-    NbButtonModule,
-    NbInputModule,
-    NbIconModule,
-    NbAccordionModule,
-    NbDatepickerModule,
-    NbCheckboxModule,
-    NbRadioModule,
-    NbSelectModule,
-    NbTooltipModule,
-    NbListModule,
-    NbTabsetModule,
-    NbStepperModule,
-    NgxUiLoaderModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    CoreModule,
-  ],
-  exports: [
-    CaptureHoursComponent,
-    AssetSearchComponent,
-  ],
-  declarations: [
-    CaptureHoursComponent,
-    AssetSearchComponent,
-  ],
-  entryComponents: [
-    CaptureHoursComponent,
-    AssetSearchComponent,
-  ],
+    imports: [
+        CommonModule,
+        NbActionsModule,
+        NbAlertModule,
+        NbCardModule,
+        NbButtonModule,
+        NbInputModule,
+        NbIconModule,
+        NbAccordionModule,
+        NbDatepickerModule,
+        NbCheckboxModule,
+        NbRadioModule,
+        NbSelectModule,
+        NbTooltipModule,
+        NbListModule,
+        NbTabsetModule,
+        NbStepperModule,
+        NgxUiLoaderModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        CoreModule,
+    ],
+    exports: [
+        CaptureHoursComponent,
+        AssetSearchComponent,
+    ],
+    declarations: [
+        CaptureHoursComponent,
+        AssetSearchComponent,
+    ]
 })
 export class AssetCoreModule {
   constructor(@Optional() @SkipSelf() parentModule: AssetCoreModule) {

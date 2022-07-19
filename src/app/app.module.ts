@@ -35,47 +35,43 @@ import { DialogDeleteComponent } from './@shared/components';
 import { GridFilterComponent } from './@core/components';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    SharedModule.forRoot(),
-    NbSidebarModule.forRoot(),
-    NbMenuModule.forRoot(),
-    NbCardModule,
-    NgxUiLoaderModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NbDatepickerModule.forRoot(),
-    NbDialogModule.forRoot(),
-    NbWindowModule.forRoot(),
-    NbToastrModule.forRoot(),
-    NbChatModule.forRoot({
-      messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
-    }),
-    DashboardModule.forRoot(),
-    CoreModule.forRoot(),
-    ThemeModule.forRoot(),
-    AssetCoreModule.forRoot(),
-    InventoryCoreModule.forRoot(),
-    WorkOrderCoreModule.forRoot(),
-    ScheduleModule.forRoot(),
-    PlannedMaintenanceModule.forRoot(),
-  ],
-  providers: [
-    AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
-    { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: req => false },
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    DialogDeleteComponent,
-    DialogTaskAddComponent,
-  ],
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        SharedModule.forRoot(),
+        NbSidebarModule.forRoot(),
+        NbMenuModule.forRoot(),
+        NbCardModule,
+        NgxUiLoaderModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NbDatepickerModule.forRoot(),
+        NbDialogModule.forRoot(),
+        NbWindowModule.forRoot(),
+        NbToastrModule.forRoot(),
+        NbChatModule.forRoot({
+            messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
+        }),
+        DashboardModule.forRoot(),
+        CoreModule.forRoot(),
+        ThemeModule.forRoot(),
+        AssetCoreModule.forRoot(),
+        InventoryCoreModule.forRoot(),
+        WorkOrderCoreModule.forRoot(),
+        ScheduleModule.forRoot(),
+        PlannedMaintenanceModule.forRoot(),
+    ],
+    providers: [
+        AuthGuard,
+        { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
+        { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: req => false },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

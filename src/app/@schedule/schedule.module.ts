@@ -52,44 +52,40 @@ export const SHARED_PROVIDERS = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NbDialogModule,
-    NbActionsModule,
-    NbAlertModule,
-    NbCardModule,
-    NbButtonModule,
-    NbInputModule,
-    NbIconModule,
-    NbAccordionModule,
-    NbDatepickerModule.forRoot(),
-    NbCheckboxModule,
-    NbRadioModule,
-    NbSelectModule,
-    NbTooltipModule,
-    NbListModule,
-    NbTabsetModule,
-    NbStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxUiLoaderModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    CoreModule,
-  ],
-  exports: [
-    ScheduleComponent,
-    DialogEditScheduleComponent,
-  ],
-  declarations: [
-    ScheduleComponent,
-    DialogEditScheduleComponent,
-  ],
-  entryComponents: [
-    ScheduleComponent,
-    DialogEditScheduleComponent,
-  ],
+    imports: [
+        CommonModule,
+        NbDialogModule,
+        NbActionsModule,
+        NbAlertModule,
+        NbCardModule,
+        NbButtonModule,
+        NbInputModule,
+        NbIconModule,
+        NbAccordionModule,
+        NbDatepickerModule.forRoot(),
+        NbCheckboxModule,
+        NbRadioModule,
+        NbSelectModule,
+        NbTooltipModule,
+        NbListModule,
+        NbTabsetModule,
+        NbStepperModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxUiLoaderModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        CoreModule,
+    ],
+    exports: [
+        ScheduleComponent,
+        DialogEditScheduleComponent,
+    ],
+    declarations: [
+        ScheduleComponent,
+        DialogEditScheduleComponent,
+    ]
 })
 export class ScheduleModule {
   constructor(@Optional() @SkipSelf() parentModule: ScheduleModule) {

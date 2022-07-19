@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ngx-task-add',
@@ -14,12 +14,12 @@ export class DialogTaskAddComponent implements OnInit {
   @Input() id: string;
 
   public task: Task;
-  public taskForm: FormGroup;
+  public taskForm: UntypedFormGroup;
 
   constructor(
     protected ref: NbDialogRef<DialogTaskAddComponent>,
     private taskService: TaskService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
   ) { }
 
   ngOnInit() {

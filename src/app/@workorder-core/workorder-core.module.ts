@@ -31,36 +31,31 @@ export const WORKORDER_CORE_PROVIDERS = [
 ];
 
 @NgModule({
-  imports: [
-    ChartModule,
-    NgxChartsModule,
-    NbActionsModule,
-    NbAlertModule,
-    NbCardModule,
-    NbButtonModule,
-    NbInputModule,
-    NbIconModule,
-    NbAccordionModule,
-    NbDatepickerModule,
-    NbCheckboxModule,
-    NbRadioModule,
-    NbSelectModule,
-    NbTooltipModule,
-    NbListModule,
-    NbTabsetModule,
-    NbStepperModule,
-    NgxUiLoaderModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-  ],
-  exports: [
-  ],
-  declarations: [
-  ],
-  entryComponents: [
-
+    imports: [
+        ChartModule,
+        NgxChartsModule,
+        NbActionsModule,
+        NbAlertModule,
+        NbCardModule,
+        NbButtonModule,
+        NbInputModule,
+        NbIconModule,
+        NbAccordionModule,
+        NbDatepickerModule,
+        NbCheckboxModule,
+        NbRadioModule,
+        NbSelectModule,
+        NbTooltipModule,
+        NbListModule,
+        NbTabsetModule,
+        NbStepperModule,
+        NgxUiLoaderModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
     ],
+    exports: [],
+    declarations: []
 })
 export class WorkOrderCoreModule {
   constructor(@Optional() @SkipSelf() parentModule: WorkOrderCoreModule) {

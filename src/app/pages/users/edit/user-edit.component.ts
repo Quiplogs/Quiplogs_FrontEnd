@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -17,14 +17,14 @@ import { DialogDeleteComponent } from '../../../@shared/components';
 export class UserEditComponent implements OnInit {
     public modelId: string = null;
     public isLoaded: boolean = false;
-    private modelForm: FormGroup;
+    private modelForm: UntypedFormGroup;
     private model: User = null;
     public locationList: any = null;
     public submitted: boolean = false;
 
     constructor(
         private ngxService: NgxUiLoaderService,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private modelService: UserService,
         private route: ActivatedRoute,
         private locationService: LocationService,

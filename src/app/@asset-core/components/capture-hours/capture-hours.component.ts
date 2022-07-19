@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { AssetUsage } from '../../models/asset-usage';
 import { AssetUsageService } from '../../services/asset-usage.service';
@@ -18,12 +18,12 @@ export class CaptureHoursComponent implements OnInit {
 
     private assetUsage: AssetUsage = null;
     public submitted: boolean = false;
-    private captureWorkForm: FormGroup;
+    private captureWorkForm: UntypedFormGroup;
     private loader: string = 'ldr-assetusage-add';
     public isLoaded = true;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private assetUsageService: AssetUsageService,
         private ngxService: NgxUiLoaderService,
     ) { }

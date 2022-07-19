@@ -109,40 +109,37 @@ export const NB_CORE_PROVIDERS = [
 ];
 
 @NgModule({
-  imports: [
-    NbActionsModule,
-    NbAlertModule,
-    CommonModule,
-    NbDialogModule,
-    NbCardModule,
-    NbButtonModule,
-    NbInputModule,
-    NbIconModule,
-    NgxUiLoaderModule,
-    NbDatepickerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NbAccordionModule,
-    NbCheckboxModule,
-    NbRadioModule,
-    NbSelectModule,
-    NbTooltipModule,
-    NbListModule,
-    RouterModule,
-    NbTabsetModule,
-    NbStepperModule,
-    NbToastrModule.forRoot(),
-  ],
-  exports: [
-    NbAuthModule,
-    GridFilterComponent,
-  ],
-  declarations: [
-    GridFilterComponent,
-  ],
-  entryComponents: [
-    GridFilterComponent,
-  ],
+    imports: [
+        NbActionsModule,
+        NbAlertModule,
+        CommonModule,
+        NbDialogModule,
+        NbCardModule,
+        NbButtonModule,
+        NbInputModule,
+        NbIconModule,
+        NgxUiLoaderModule,
+        NbDatepickerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NbAccordionModule,
+        NbCheckboxModule,
+        NbRadioModule,
+        NbSelectModule,
+        NbTooltipModule,
+        NbListModule,
+        RouterModule,
+        NbTabsetModule,
+        NbStepperModule,
+        NbToastrModule.forRoot(),
+    ],
+    exports: [
+        NbAuthModule,
+        GridFilterComponent,
+    ],
+    declarations: [
+        GridFilterComponent,
+    ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
