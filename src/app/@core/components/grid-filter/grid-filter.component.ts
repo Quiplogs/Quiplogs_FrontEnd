@@ -19,7 +19,7 @@ export class GridFilterComponent implements AfterViewInit, OnDestroy {
   @Output()
   onSearch = new EventEmitter<string>();
 
-  @ViewChild('searchInput', { static: false })
+  @ViewChild('searchInput')
   input: ElementRef;
 
   private subscription: Subscription;
