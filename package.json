@@ -34,6 +34,7 @@
     "@angular/cdk": "12.1.0",
     "@angular/common": "^12.2.16",
     "@angular/compiler": "^12.2.16",
+    "@angular/compiler-cli": "^12.2.16",
     "@angular/core": "^12.2.16",
     "@angular/forms": "^12.2.16",
     "@angular/google-maps": "^12.2.13",
@@ -82,7 +83,6 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.1.4",
     "@angular/cli": "^12.2.17",
-    "@angular/compiler-cli": "^12.2.16",
     "@angular/language-service": "12.1.0",
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "2.5.54",
