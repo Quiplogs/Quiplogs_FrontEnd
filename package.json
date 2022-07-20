@@ -14,7 +14,7 @@
     "conventional-changelog": "conventional-changelog",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "npm run build -- --prod --aot",
+    "build:prod": "npm run build -- --configuration production --aot",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
     "lint": "ng lint",
@@ -29,15 +29,15 @@
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
-    "@angular/animations": "^11.2.14",
+    "@angular/animations": "^12.2.16",
     "@angular/cdk": "^9.2.4",
-    "@angular/common": "^11.2.14",
-    "@angular/compiler": "^11.2.14",
-    "@angular/core": "^11.2.14",
-    "@angular/forms": "^11.2.14",
-    "@angular/platform-browser": "^11.2.14",
-    "@angular/platform-browser-dynamic": "^11.2.14",
-    "@angular/router": "^11.2.14",
+    "@angular/common": "^12.2.16",
+    "@angular/compiler": "^12.2.16",
+    "@angular/core": "^12.2.16",
+    "@angular/forms": "^12.2.16",
+    "@angular/platform-browser": "^12.2.16",
+    "@angular/platform-browser-dynamic": "^12.2.16",
+    "@angular/router": "^12.2.16",
     "@nebular/auth": "4.1.2",
     "@nebular/eva-icons": "4.1.2",
     "@nebular/security": "4.1.2",
@@ -69,13 +69,13 @@
     "tinymce": "4.5.7",
     "tslib": "^2.0.0",
     "typeface-exo": "0.0.22",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.19",
-    "@angular/cli": "^11.2.19",
-    "@angular/compiler-cli": "^11.2.14",
-    "@angular/language-service": "11.2.14",
+    "@angular-devkit/build-angular": "~12.2.17",
+    "@angular/cli": "^12.2.17",
+    "@angular/compiler-cli": "^12.2.16",
+    "@angular/language-service": "12.2.16",
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "2.5.54",
     "@types/jasminewd2": "2.0.3",
@@ -98,6 +98,6 @@
     "ts-node": "3.2.2",
     "tslint": "~6.1.0",
     "tslint-language-service": "^0.9.9",
-    "typescript": "4.0.8"
+    "typescript": "4.3.5"
   }
 }
