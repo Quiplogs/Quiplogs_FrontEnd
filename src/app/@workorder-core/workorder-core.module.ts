@@ -61,8 +61,8 @@ export class WorkOrderCoreModule {
   constructor(@Optional() @SkipSelf() parentModule: WorkOrderCoreModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<WorkOrderCoreModule> {
+    return {
       ngModule: WorkOrderCoreModule,
       providers: [
         ...WORKORDER_CORE_PROVIDERS,

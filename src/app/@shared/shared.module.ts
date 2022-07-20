@@ -7,8 +7,6 @@ import {
   TinyMCEComponent,
 } from './components';
 
-import { DeviceDetectorModule } from 'ngx-device-detector';
-
 import {
   NbDialogModule,
   NbActionsModule,
@@ -63,7 +61,6 @@ export const SHARED_PROVIDERS = [
         NbTabsetModule,
         NbStepperModule,
         NbToastrModule.forRoot(),
-        DeviceDetectorModule.forRoot(),
         CoreModule,
     ],
     exports: [
@@ -80,8 +77,8 @@ export class SharedModule {
   constructor(@Optional() @SkipSelf() parentModule: SharedModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<SharedModule> {
+    return {
       ngModule: SharedModule,
       providers: [
         ...SHARED_PROVIDERS,

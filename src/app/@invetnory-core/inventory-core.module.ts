@@ -11,7 +11,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DeviceDetectorModule } from 'ngx-device-detector';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { CoreModule } from '../@core/core.module';
 
 import {
@@ -59,7 +59,6 @@ export const INVENTORY_CORE_PROVIDERS = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        DeviceDetectorModule.forRoot(),
         CoreModule,
     ],
     exports: [
@@ -77,8 +76,8 @@ export class InventoryCoreModule {
   constructor(@Optional() @SkipSelf() parentModule: InventoryCoreModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<InventoryCoreModule> {
+    return {
       ngModule: InventoryCoreModule,
       providers: [
         ...INVENTORY_CORE_PROVIDERS,

@@ -86,8 +86,8 @@ export class PlannedMaintenanceModule {
   constructor(@Optional() @SkipSelf() parentModule: PlannedMaintenanceModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<PlannedMaintenanceModule> {
+    return {
       ngModule: PlannedMaintenanceModule,
       providers: [
         ...PLANNED_MAINTENANCE_PROVIDERS,

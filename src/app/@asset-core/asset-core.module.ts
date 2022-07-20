@@ -71,8 +71,8 @@ export class AssetCoreModule {
   constructor(@Optional() @SkipSelf() parentModule: AssetCoreModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<AssetCoreModule> {
+    return {
       ngModule: AssetCoreModule,
       providers: [
         ...ASSET_CORE_PROVIDERS,
