@@ -95,8 +95,8 @@ export class ScheduleModule {
   constructor(@Optional() @SkipSelf() parentModule: ScheduleModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<ScheduleModule> {
+    return {
       ngModule: ScheduleModule,
       providers: [
         ...SHARED_PROVIDERS,

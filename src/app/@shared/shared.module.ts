@@ -85,8 +85,8 @@ export class SharedModule {
   constructor(@Optional() @SkipSelf() parentModule: SharedModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<SharedModule> {
+    return {
       ngModule: SharedModule,
       providers: [
         ...SHARED_PROVIDERS,

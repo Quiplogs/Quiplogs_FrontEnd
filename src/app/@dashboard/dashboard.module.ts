@@ -18,8 +18,8 @@ export class DashboardModule {
     throwIfAlreadyLoaded(parentModule, 'DashboardModule');
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<DashboardModule> {
+    return {
       ngModule: DashboardModule,
       providers: [
         ...DASHBOARD_PROVIDERS,

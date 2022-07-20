@@ -82,8 +82,8 @@ export class InventoryCoreModule {
   constructor(@Optional() @SkipSelf() parentModule: InventoryCoreModule) {
   }
 
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  static forRoot(): ModuleWithProviders<InventoryCoreModule> {
+    return {
       ngModule: InventoryCoreModule,
       providers: [
         ...INVENTORY_CORE_PROVIDERS,
