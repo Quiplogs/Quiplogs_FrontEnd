@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Part } from '../../../@invetnory-core/models/part';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PartService } from '../../../@invetnory-core/services/part.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
@@ -20,7 +20,7 @@ export class PartCreateComponent implements OnInit {
     public partId: string;
     public isLoaded: boolean = false;
     public locationList: any = null;
-    private partForm: UntypedFormGroup;
+    private partForm: FormGroup;
     private part: Part = null;
     public submitted: boolean = false;
 
@@ -30,7 +30,7 @@ export class PartCreateComponent implements OnInit {
 
     constructor(
         private ngxService: NgxUiLoaderService,
-        private formBuilder: UntypedFormBuilder,
+        private formBuilder: FormBuilder,
         private partService: PartService,
         private route: ActivatedRoute,
         private dialogService: NbDialogService,

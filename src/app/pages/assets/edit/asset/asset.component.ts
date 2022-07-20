@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Asset } from '../../../../@asset-core/models/asset';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AssetService } from '../../../../@asset-core/services/asset.service';
 import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../../../../@core/services/location.service';
@@ -19,7 +19,7 @@ export class AssetEditComponent implements OnInit {
     public assetId: string;
     public isLoaded: boolean = false;
     public locationList: any = null;
-    private assetForm: UntypedFormGroup;
+    private assetForm: FormGroup;
     private asset: Asset = null;
     public assetLocationId: string;
     public assetUom: string;
@@ -36,7 +36,7 @@ export class AssetEditComponent implements OnInit {
     public showPM: boolean = false;
 
     constructor(
-        private formBuilder: UntypedFormBuilder,
+        private formBuilder: FormBuilder,
         private assetService: AssetService,
         private route: ActivatedRoute,
         private locationService: LocationService,

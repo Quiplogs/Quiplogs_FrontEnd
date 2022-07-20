@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LocationEntity } from '../../../@core/models/location';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocationService } from '../../../@core/services/location.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
@@ -19,7 +19,7 @@ export class LocationCreateComponent implements OnInit {
 
   public locationId: string;
   public isLoaded: boolean = false;
-  public locationForm: UntypedFormGroup;
+  public locationForm: FormGroup;
   public location: LocationEntity = null;
   public userList: any = null;
   public submitted: boolean = false;
@@ -30,7 +30,7 @@ export class LocationCreateComponent implements OnInit {
 
   constructor(
     private ngxService: NgxUiLoaderService,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private locationService: LocationService,
     private route: ActivatedRoute,
     private dialogService: NbDialogService,

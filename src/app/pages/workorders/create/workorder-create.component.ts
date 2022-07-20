@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { Asset } from '../../../@asset-core/models/asset';
@@ -23,7 +23,7 @@ export class WorkOrderCreateComponent implements OnInit {
 
     public locationList;
     public technicianList;
-    public workOrderCreateForm: UntypedFormGroup;
+    public workOrderCreateForm: FormGroup;
     public modelId: any;
     public submitted: boolean = false;
     public model: WorkOrder;
@@ -32,7 +32,7 @@ export class WorkOrderCreateComponent implements OnInit {
 
     constructor(
         private dialogService: NbDialogService,
-        private formBuilder: UntypedFormBuilder,
+        private formBuilder: FormBuilder,
         private dataService: WorkOrderService,
         private router: Router,
         private locationService: LocationService,

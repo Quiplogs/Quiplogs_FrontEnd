@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { ScheduleCustom } from '../../models/schedule-custom';
 import { ScheduleDaily } from '../../models/schedule-daily';
@@ -31,11 +31,11 @@ export class DialogEditScheduleComponent implements OnInit {
   selectedSchedule = 'custom';
 
   // Forms
-  public customScheduleForm: UntypedFormGroup;
-  public dailyScheduleForm: UntypedFormGroup;
-  public weeklyScheduleForm: UntypedFormGroup;
-  public monthlyScheduleForm: UntypedFormGroup;
-  public yearlyScheduleForm: UntypedFormGroup;
+  public customScheduleForm: FormGroup;
+  public dailyScheduleForm: FormGroup;
+  public weeklyScheduleForm: FormGroup;
+  public monthlyScheduleForm: FormGroup;
+  public yearlyScheduleForm: FormGroup;
 
   public isCustom: boolean = true;
   public isDaily: boolean = false;
@@ -66,7 +66,7 @@ export class DialogEditScheduleComponent implements OnInit {
   public enableYearly: boolean = false;
 
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private scheduleCustomService: ScheduleCustomService,
     private scheduleDailyService: ScheduleDailyService,
     private scheduleWeeklyService: ScheduleWeeklyService,

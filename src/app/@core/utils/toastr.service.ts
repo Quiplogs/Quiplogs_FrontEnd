@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import 'style-loader!angular2-toaster/toaster.css';
 import {
     NbComponentStatus,
     NbGlobalPhysicalPosition,

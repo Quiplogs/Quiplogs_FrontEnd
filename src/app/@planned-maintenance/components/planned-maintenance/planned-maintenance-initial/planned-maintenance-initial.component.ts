@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlannedMaintenance } from '../../../models/plannedMaintenance';
 import { PlannedMaintenanceService } from '../../../services/plannedMaintenance/planned-maintenance.service';
 import { UserService } from '../../../../@core/services/user.service';
@@ -17,9 +17,9 @@ export class PlannedMaintenanceInitialComponent implements OnInit {
   @Input()
   AssetLocationId: string;
 
-  public createForm: UntypedFormGroup;
-  public scheduleForm: UntypedFormGroup;
-  public miscForm: UntypedFormGroup;
+  public createForm: FormGroup;
+  public scheduleForm: FormGroup;
+  public miscForm: FormGroup;
   public plannedMaintenance: PlannedMaintenance;
   public technicianList: any = null;
 
@@ -27,7 +27,7 @@ export class PlannedMaintenanceInitialComponent implements OnInit {
 
   constructor(
     protected ref: NbDialogRef<PlannedMaintenanceInitialComponent>,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private dataService: PlannedMaintenanceService,
     private userService: UserService,
   ) { }

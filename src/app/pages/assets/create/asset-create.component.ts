@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Asset } from '../../../@asset-core/models/asset';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AssetService } from '../../../@asset-core/services/asset.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { LocationService } from '../../../@core/services/location.service';
@@ -22,7 +22,7 @@ export class AssetCreateComponent implements OnInit, OnDestroy {
     public isPMSelected: boolean;
     public shouldSubmit: boolean = false;
     private asset: Asset = null;
-    private assetForm: UntypedFormGroup;
+    private assetForm: FormGroup;
     private loader: string = 'ldr-asset-create';
     private mySubscription: any;
     public assetLocationId: string;
@@ -30,7 +30,7 @@ export class AssetCreateComponent implements OnInit, OnDestroy {
 
     constructor(
         private ngxService: NgxUiLoaderService,
-        private formBuilder: UntypedFormBuilder,
+        private formBuilder: FormBuilder,
         private assetService: AssetService,
         public route: ActivatedRoute,
         private locationService: LocationService,
