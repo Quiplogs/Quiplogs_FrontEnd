@@ -38,7 +38,7 @@
     "@angular/platform-browser": "^12.2.16",
     "@angular/platform-browser-dynamic": "^12.2.16",
     "@angular/router": "^12.2.16",
-    "@nebular/auth": "4.1.2",
+    "@nebular/auth": "8.0.0",
     "@nebular/eva-icons": "4.1.2",
     "@nebular/security": "4.1.2",
     "@nebular/theme": "8.0.0",
