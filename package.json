@@ -40,7 +40,7 @@
     "@angular/router": "^12.2.16",
     "@nebular/auth": "8.0.0",
     "@nebular/eva-icons": "8.0.0",
-    "@nebular/security": "4.1.2",
+    "@nebular/security": "8.0.0",
     "@nebular/theme": "8.0.0",
     "@swimlane/ngx-charts": "14.0.0",
     "angular2-chartjs": "^0.5.1",
